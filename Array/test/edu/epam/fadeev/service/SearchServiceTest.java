@@ -1,6 +1,8 @@
 package edu.epam.fadeev.service;
 
 import edu.epam.fadeev.entity.CustomArray;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -9,6 +11,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
 public class SearchServiceTest {
+    private static final Logger logger = LogManager.getLogger(SearchServiceTest.class);
     public CustomArray array;
     public SearchService s;
     public SortingService sort;
@@ -26,6 +29,7 @@ public class SearchServiceTest {
 
     @Test
     public void testBinarySearch() {
+        logger.info("start testBinarySearch");
         sort.bubbleSort(array);
         int expected = 8;
         int actual = s.binarySearch(array, 47);
