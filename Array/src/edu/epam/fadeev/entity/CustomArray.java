@@ -1,6 +1,7 @@
 package edu.epam.fadeev.entity;
 
-import edu.epam.fadeev.service.ReaderInformation;
+import edu.epam.fadeev.helper.RandomGeneration;
+import edu.epam.fadeev.reader.ReaderInformation;
 
 import java.util.Arrays;
 
@@ -8,10 +9,7 @@ public class CustomArray {
     private int[] array;
 
     public CustomArray(int length) {
-        array = new int[length];
-        for (int i = 0; i < length ; i++) {
-            array[i] = Double.valueOf(Math.random()).intValue();
-        }
+        array = RandomGeneration.generateArray(length);
     }
 
     public CustomArray() {
@@ -56,8 +54,8 @@ public class CustomArray {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CustomArray array1 = (CustomArray) o;
-        return Arrays.equals(array, array1.array);
+        CustomArray that = (CustomArray) o;
+        return Arrays.equals(array, that.array);
     }
 
     @Override
@@ -67,8 +65,9 @@ public class CustomArray {
 
     @Override
     public String toString() {
-        return "Array{" +
-                "array=" + Arrays.toString(array) +
-                '}';
+        final StringBuilder sb = new StringBuilder("CustomArray{");
+        sb.append("array=").append(Arrays.toString(array));
+        sb.append('}');
+        return sb.toString();
     }
 }

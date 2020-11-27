@@ -1,4 +1,4 @@
-package edu.epam.fadeev.service;
+package edu.epam.fadeev.reader;
 
 
 import org.apache.logging.log4j.LogManager;
@@ -12,6 +12,8 @@ import java.util.Scanner;
 public class ReaderInformation {
 
     private static final Logger logger = LogManager.getLogger(ReaderInformation.class);
+    private static final String FILE_NAME = "data/test.properties";
+    private static final String REGEX = ", ";
 
     public static int[] read() {
         logger.info(">> start <<");
@@ -24,21 +26,22 @@ public class ReaderInformation {
         String[] lineInfoList = null;
         Scanner scanFile = null;
         try {
-            scanFile = new Scanner(new File("data/test.properties"));
+            scanFile = new Scanner(new File(FILE_NAME));
         } catch (FileNotFoundException e) {
             logger.error(e.getMessage(), e);
         }
-        String lineString;
+        String lineString = "";
         if (scanFile != null) {
             try {
                 lineString = scanFile.nextLine();
-                lineInfoList = lineString.split(", ");
+                lineInfoList = lineString.split(REGEX);
             } catch (NullPointerException e) {
-                logger.error(e.getMessage(), e);
+                lineInfoList = new String[]{};
+                logger.info(e.getMessage(), e);
             }
             scanFile.close();
         }
-        logger.debug(">> end read file, result <<" + lineInfoList.toString());
+        logger.debug(">> end read file, result: " + Arrays.toString(lineInfoList));
         return lineInfoList;
     }
 }

@@ -52,8 +52,9 @@ public class SearchService {
                     if (array.getArrayElement(i) % j == 0)
                         flag = false;
                 }
-                if (flag)
+                if (flag) {
                     primeArray.add(array.getArrayElement(i));
+                }
             } else {
                 primeArray.add(array.getArrayElement(i));
             }

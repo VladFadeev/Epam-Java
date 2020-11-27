@@ -8,7 +8,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
 
 public class SearchServiceTest {
     private static final Logger logger = LogManager.getLogger(SearchServiceTest.class);
@@ -68,23 +67,6 @@ public class SearchServiceTest {
     public void testThreeDifferentDigitsSearch() {
         int[] expected = new int[]{234,423};
         int[] actual = s.threeDifferentDigitsSearch(array);
-        assertEquals(actual, expected);
-    }
-
-    @Test
-    public void testInitArrayByRandom(){
-        CustomArray expected = new CustomArray(1,7);
-        CustomArray actual = new CustomArray(7);
-        assertEquals(actual.length(), expected.length());
-        for (int i = 0; i < expected.length(); i++) {
-            assertNotNull(actual.getArrayElement(i));
-        }
-    }
-
-    @Test
-    public void testInitArrayByFile() {
-        CustomArray expected = new CustomArray(new int[]{3, 236, 65, 33, 7, 674, 75});
-        CustomArray actual = new CustomArray();
         assertEquals(actual, expected);
     }
 }
